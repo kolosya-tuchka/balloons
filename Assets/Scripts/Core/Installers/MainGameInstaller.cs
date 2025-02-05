@@ -1,6 +1,7 @@
 ﻿using Core.Factories.GameFactory;
 using MainGame.Balloons;
 using MainGame.GameField;
+using MainGame.GameLoop;
 using Zenject;
 
 namespace Core.Installers
@@ -15,6 +16,7 @@ namespace Core.Installers
             Container.Bind<BalloonSpawner>().AsSingle();
             Container.Bind<BalloonMover>().AsSingle();
             Container.Bind<BalloonPopper>().AsSingle();
+            Container.Bind<GameOverController>().AsSingle();
 
             Container.BindInterfacesTo<MainGameManager>().AsSingle();
         }

@@ -6,5 +6,6 @@ namespace MainGame.GameField
     {
         [field: SerializeField] public BalloonDespawnTrigger BalloonDespawnTrigger { get; private set; }
         [field: SerializeField] public SpawnRange SpawnRange { get; private set; }
+        [field: SerializeField] public Transform BalloonsParent { get; private set; }
     }
 }

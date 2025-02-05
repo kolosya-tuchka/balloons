@@ -18,6 +18,8 @@ namespace MainGame.Balloons
         private readonly SpawnRange _spawnRange;
         private readonly IGameFactory _gameFactory;
         private readonly MainGameField _mainGameField;
+
+        private bool _spawn;
         
         [Inject]
         public BalloonSpawner(ICoroutineRunner coroutineRunner, IGameFactory gameFactory, MainGameField mainGameField)
@@ -31,12 +33,18 @@ namespace MainGame.Balloons
 
         public void StartGameplay()
         {
+            _spawn = true;
             _coroutineRunner.StartCoroutine(SpawnCoroutine());
+        }
+
+        public void DeInit()
+        {
+            _spawn = false;
         }
 
         private IEnumerator SpawnCoroutine()
         {
-            while (true)
+            while (_spawn)
             {
                 SpawnBalloon();
                 yield return new WaitForSeconds(1);
@@ -65,7 +73,7 @@ namespace MainGame.Balloons
             var balloon = _gameFactory.CreateBalloon();
             balloon.gameObject.SetActive(false);
             balloon.Init(DespawnBalloon);
-            balloon.transform.parent = _mainGameField.transform;
+            balloon.transform.parent = _mainGameField.BalloonsParent;
             return balloon;
         }
     }
