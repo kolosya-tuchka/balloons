@@ -17,13 +17,11 @@ namespace MainGame.Balloons
 
         public void Despawn()
         {
-            Debug.Log("Despawn");
             _onBalloonDespawn?.Invoke(this);
         }
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            Debug.Log("Click");
             OnBalloonClick?.Invoke(this);
         }
     }

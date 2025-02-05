@@ -1,4 +1,5 @@
 using Core.Factories.GameFactory;
+using Core.Services.SaveLoadService;
 using Core.Services.SceneLoader;
 using UnityEngine;
 using Zenject;
@@ -32,6 +33,7 @@ namespace Core.Installers
         private void BindServices()
         {
             Container.Bind<SceneLoader>().AsSingle();
+            Container.BindInterfacesTo<PlayerPrefsSaveLoadService>().AsSingle();
         }
     }
 }

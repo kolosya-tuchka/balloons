@@ -1,4 +1,5 @@
-﻿using Core.Services.SceneLoader;
+﻿using Core.Services.SaveLoadService;
+using Core.Services.SceneLoader;
 using MainGame.Balloons;
 using MainGame.GameField;
 using MainGame.GameLoop;
@@ -13,17 +14,20 @@ namespace Core
         private readonly BalloonMover _balloonMover;
         private readonly BalloonPopper _balloonPopper;
         private readonly GameOverController _gameOverController;
+        private readonly ISaveLoadService _saveLoadService;
         private readonly SceneLoader _sceneLoader;
 
         [Inject]
         public MainGameManager(BalloonSpawner balloonSpawner, MainGameField mainGameField, SceneLoader sceneLoader,
-            BalloonMover balloonMover, BalloonPopper balloonPopper, GameOverController gameOverController)
+            BalloonMover balloonMover, BalloonPopper balloonPopper, GameOverController gameOverController,
+            ISaveLoadService saveLoadService)
         {
             _balloonSpawner = balloonSpawner;
             _mainGameField = mainGameField;
             _balloonMover = balloonMover;
             _balloonPopper = balloonPopper;
             _gameOverController = gameOverController;
+            _saveLoadService = saveLoadService;
             _sceneLoader = sceneLoader;
         }
 
@@ -55,6 +59,7 @@ namespace Core
         {
             DeInit();
             
+            _saveLoadService.Save(new("Aboba", _balloonPopper.BalloonCount));
             _sceneLoader.LoadScene(SceneName.MainMenu);
         }
     }
