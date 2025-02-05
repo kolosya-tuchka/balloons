@@ -3,5 +3,6 @@
     public static class ResourcePaths
     {
         public const string MainMenuUI = "MainMenu/MainMenuUI";
+        public const string MainGameField = "MainGame/MainGameField";
     }
 }

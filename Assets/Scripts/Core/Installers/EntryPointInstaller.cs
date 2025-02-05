@@ -7,10 +7,14 @@ namespace Core.Installers
 {
     public class EntryPointInstaller : MonoInstaller
     {
+        [SerializeField] private CoroutineRunner CoroutineRunner;
+        
         public override void InstallBindings()
         {
             BindServices();
             BindFactories();
+
+            Container.Bind<CoroutineRunner>().FromInstance(CoroutineRunner).AsSingle();
 
             StartGame();
         }

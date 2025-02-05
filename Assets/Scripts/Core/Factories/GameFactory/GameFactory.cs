@@ -1,4 +1,5 @@
-﻿using MainMenu;
+﻿using MainGame.GameField;
+using MainMenu;
 using UnityEngine;
 using Zenject;
 
@@ -16,6 +17,9 @@ namespace Core.Factories.GameFactory
 
         public MainMenuUI CreateMainMenuUI() =>
             LoadAndInstantiate(ResourcePaths.MainMenuUI).GetComponent<MainMenuUI>();
+
+        public MainGameField CreateMainGameField() =>
+            LoadAndInstantiate(ResourcePaths.MainGameField).GetComponent<MainGameField>();
 
         private GameObject LoadAndInstantiate(string address)
         {
