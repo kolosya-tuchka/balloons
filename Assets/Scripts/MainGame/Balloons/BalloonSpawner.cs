@@ -16,19 +16,17 @@ namespace MainGame.Balloons
         private readonly ICoroutineRunner _coroutineRunner;
         private readonly IObjectPool<Balloon> _balloonPool;
         private readonly SpawnRange _spawnRange;
+        private readonly IGameFactory _gameFactory;
+        private readonly MainGameField _mainGameField;
         
         [Inject]
-        public BalloonSpawner(ICoroutineRunner coroutineRunner, IGameFactory gameFactory, SpawnRange spawnRange)
+        public BalloonSpawner(ICoroutineRunner coroutineRunner, IGameFactory gameFactory, MainGameField mainGameField)
         {
             _coroutineRunner = coroutineRunner;
-            _spawnRange = spawnRange;
-            _balloonPool = new ObjectPool<Balloon>(() =>
-                {
-                    var balloon = gameFactory.CreateBalloon();
-                    balloon.gameObject.SetActive(false);
-                    balloon.Init(DespawnBalloon);
-                    return balloon;
-                });
+            _spawnRange = mainGameField.SpawnRange;
+            _mainGameField = mainGameField;
+            _gameFactory = gameFactory;
+            _balloonPool = new ObjectPool<Balloon>(FactoryMethod);
         }
 
         public void StartGameplay()
@@ -60,6 +58,15 @@ namespace MainGame.Balloons
             _balloonPool.Release(balloon);
             
             OnBalloonDespawned?.Invoke(balloon);
+        }
+
+        private Balloon FactoryMethod()
+        {
+            var balloon = _gameFactory.CreateBalloon();
+            balloon.gameObject.SetActive(false);
+            balloon.Init(DespawnBalloon);
+            balloon.transform.parent = _mainGameField.transform;
+            return balloon;
         }
     }
 }
