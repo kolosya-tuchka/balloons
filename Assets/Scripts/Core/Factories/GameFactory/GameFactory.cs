@@ -22,8 +22,8 @@ namespace Core.Factories.GameFactory
         public MainGameField CreateMainGameField() =>
             LoadAndInstantiate(ResourcePaths.MainGameField).GetComponent<MainGameField>();
 
-        public BalloonView CreateBalloon() =>
-            LoadAndInstantiate(ResourcePaths.Balloon).GetComponent<BalloonView>();
+        public Balloon CreateBalloon() =>
+            LoadAndInstantiate(ResourcePaths.Balloon).GetComponent<Balloon>();
 
         private GameObject LoadAndInstantiate(string address)
         {

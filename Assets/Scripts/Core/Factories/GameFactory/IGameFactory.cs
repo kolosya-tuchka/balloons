@@ -8,6 +8,6 @@ namespace Core.Factories.GameFactory
     {
         MainMenuUI CreateMainMenuUI();
         MainGameField CreateMainGameField();
-        BalloonView CreateBalloon();
+        Balloon CreateBalloon();
     }
 }

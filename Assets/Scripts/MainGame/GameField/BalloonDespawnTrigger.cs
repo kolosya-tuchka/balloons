@@ -6,13 +6,14 @@ namespace MainGame.GameField
 {
     public class BalloonDespawnTrigger : MonoBehaviour
     {
-        public event Action<BalloonView> OnBalloonEnterTrigger;
+        public event Action<Balloon> OnBalloonEnterTrigger;
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.TryGetComponent(out BalloonView balloon))
+            if (other.TryGetComponent(out Balloon balloon))
             {
                 OnBalloonEnterTrigger?.Invoke(balloon);
+                balloon.Despawn();
             }
         }
     }

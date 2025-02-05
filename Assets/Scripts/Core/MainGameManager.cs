@@ -9,18 +9,21 @@ namespace Core
     {
         private readonly BalloonSpawner _balloonSpawner;
         private readonly MainGameField _mainGameField;
+        private readonly BalloonMover _balloonMover;
         private readonly SceneLoader _sceneLoader;
 
         [Inject]
-        public MainGameManager(BalloonSpawner balloonSpawner, MainGameField mainGameField, SceneLoader sceneLoader)
+        public MainGameManager(BalloonSpawner balloonSpawner, MainGameField mainGameField, SceneLoader sceneLoader,
+            BalloonMover balloonMover)
         {
             _balloonSpawner = balloonSpawner;
             _mainGameField = mainGameField;
+            _balloonMover = balloonMover;
         }
 
         public void Initialize()
         {
-            _balloonSpawner.Init();
+            _balloonMover.Init();
             
             StartGameplay();
         }
@@ -32,7 +35,7 @@ namespace Core
 
         private void DeInit()
         {
-            _balloonSpawner.DeInit();
+            _balloonMover.DeInit();
             
             _sceneLoader.LoadScene(SceneName.MainMenu);
         }

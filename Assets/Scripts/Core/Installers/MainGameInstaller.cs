@@ -13,6 +13,7 @@ namespace Core.Installers
             var mainGameField = gameFactory.CreateMainGameField();
             Container.Bind<MainGameField>().FromInstance(mainGameField).AsSingle();
             Container.Bind<BalloonSpawner>().AsSingle().WithArguments(mainGameField.SpawnRange);
+            Container.Bind<BalloonMover>().AsSingle();
 
             Container.BindInterfacesTo<MainGameManager>().AsSingle();
         }

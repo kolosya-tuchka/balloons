@@ -11,35 +11,24 @@ namespace MainGame.Balloons
 {
     public class BalloonSpawner
     {
-        public event Action<BalloonView> OnBalloonSpawned; 
+        public event Action<Balloon> OnBalloonSpawned, OnBalloonDespawned; 
         
         private readonly ICoroutineRunner _coroutineRunner;
-        private readonly IObjectPool<BalloonView> _balloonPool;
+        private readonly IObjectPool<Balloon> _balloonPool;
         private readonly SpawnRange _spawnRange;
-        private readonly BalloonDespawnTrigger _despawnTrigger;
         
         [Inject]
-        public BalloonSpawner(ICoroutineRunner coroutineRunner, IGameFactory gameFactory, MainGameField mainGameField)
+        public BalloonSpawner(ICoroutineRunner coroutineRunner, IGameFactory gameFactory, SpawnRange spawnRange)
         {
             _coroutineRunner = coroutineRunner;
-            _spawnRange = mainGameField.SpawnRange;
-            _despawnTrigger = mainGameField.BalloonDespawnTrigger;
-            _balloonPool = new ObjectPool<BalloonView>(() =>
+            _spawnRange = spawnRange;
+            _balloonPool = new ObjectPool<Balloon>(() =>
                 {
                     var balloon = gameFactory.CreateBalloon();
                     balloon.gameObject.SetActive(false);
+                    balloon.Init(DespawnBalloon);
                     return balloon;
-                }, OnBalloonSpawn,OnBalloonDespawn);
-        }
-
-        public void Init()
-        {
-            _despawnTrigger.OnBalloonEnterTrigger += DespawnBalloon;
-        }
-
-        public void DeInit()
-        {
-            _despawnTrigger.OnBalloonEnterTrigger -= DespawnBalloon;
+                });
         }
 
         public void StartGameplay()
@@ -51,25 +40,26 @@ namespace MainGame.Balloons
         {
             while (true)
             {
-                _balloonPool.Get();
+                SpawnBalloon();
                 yield return new WaitForSeconds(1);
             }
         }
 
-        private void OnBalloonSpawn(BalloonView balloon)
+        private void SpawnBalloon()
         {
+            var balloon = _balloonPool.Get();
             balloon.transform.position = _spawnRange.GetSpawnPoint();
             balloon.gameObject.SetActive(true);
+            
+            OnBalloonSpawned?.Invoke(balloon);
         }
 
-        private void DespawnBalloon(BalloonView balloon)
-        {
-            _balloonPool.Release(balloon);
-        }
-
-        private void OnBalloonDespawn(BalloonView balloon)
+        private void DespawnBalloon(Balloon balloon)
         {
             balloon.gameObject.SetActive(false);
+            _balloonPool.Release(balloon);
+            
+            OnBalloonDespawned?.Invoke(balloon);
         }
     }
 }
