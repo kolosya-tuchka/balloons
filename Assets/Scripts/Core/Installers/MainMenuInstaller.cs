@@ -12,6 +12,8 @@ namespace Core.Installers
             var gameFactory = Container.Resolve<IGameFactory>();
             var mainMenuUI = gameFactory.CreateMainMenuUI();
             Container.Bind<MainMenuUI>().FromInstance(mainMenuUI).AsSingle();
+
+            Container.BindInterfacesTo<MainMenuManager>().AsSingle();
         }
     }
 }

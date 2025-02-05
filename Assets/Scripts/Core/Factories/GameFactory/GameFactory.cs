@@ -1,4 +1,5 @@
 ﻿using MainMenu;
+using UnityEngine;
 using Zenject;
 
 namespace Core.Factories.GameFactory
@@ -14,6 +15,12 @@ namespace Core.Factories.GameFactory
         }
 
         public MainMenuUI CreateMainMenuUI() =>
-            _container.InstantiatePrefabResource(ResourcePaths.MainMenuUI).GetComponent<MainMenuUI>();
+            LoadAndInstantiate(ResourcePaths.MainMenuUI).GetComponent<MainMenuUI>();
+
+        private GameObject LoadAndInstantiate(string address)
+        {
+            var prefab = Resources.Load<GameObject>(address);
+            return Object.Instantiate(prefab);
+        }
     }
 }
