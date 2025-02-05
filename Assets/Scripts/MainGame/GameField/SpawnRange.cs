@@ -12,13 +12,13 @@ namespace MainGame.GameField
         {
             var x = Random.Range(-Size.x, Size.x);
             var y = Random.Range(-Size.y, Size.y);
-            return new Vector2(x, y);
+            return (Vector2)transform.position + new Vector2(x, y) / 2;
         }
         
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(transform.position, Size / 2);
+            Gizmos.DrawWireCube(transform.position, Size);
         }
     }
 }

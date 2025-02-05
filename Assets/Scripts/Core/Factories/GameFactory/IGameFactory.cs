@@ -1,4 +1,5 @@
-﻿using MainGame.GameField;
+﻿using MainGame.Balloons;
+using MainGame.GameField;
 using MainMenu;
 
 namespace Core.Factories.GameFactory
@@ -7,5 +8,6 @@ namespace Core.Factories.GameFactory
     {
         MainMenuUI CreateMainMenuUI();
         MainGameField CreateMainGameField();
+        BalloonView CreateBalloon();
     }
 }

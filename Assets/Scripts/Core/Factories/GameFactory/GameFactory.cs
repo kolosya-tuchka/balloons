@@ -1,4 +1,5 @@
-﻿using MainGame.GameField;
+﻿using MainGame.Balloons;
+using MainGame.GameField;
 using MainMenu;
 using UnityEngine;
 using Zenject;
@@ -20,6 +21,9 @@ namespace Core.Factories.GameFactory
 
         public MainGameField CreateMainGameField() =>
             LoadAndInstantiate(ResourcePaths.MainGameField).GetComponent<MainGameField>();
+
+        public BalloonView CreateBalloon() =>
+            LoadAndInstantiate(ResourcePaths.Balloon).GetComponent<BalloonView>();
 
         private GameObject LoadAndInstantiate(string address)
         {

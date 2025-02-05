@@ -2,7 +2,7 @@
 
 namespace Core
 {
-    public class CoroutineRunner : MonoBehaviour
+    public class CoroutineRunner : MonoBehaviour, ICoroutineRunner
     {
         
     }

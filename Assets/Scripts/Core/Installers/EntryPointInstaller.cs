@@ -14,7 +14,7 @@ namespace Core.Installers
             BindServices();
             BindFactories();
 
-            Container.Bind<CoroutineRunner>().FromInstance(CoroutineRunner).AsSingle();
+            Container.BindInterfacesTo<CoroutineRunner>().FromInstance(CoroutineRunner).AsSingle();
 
             StartGame();
         }
