@@ -1,4 +1,5 @@
-﻿using MainGame.Balloons;
+﻿using Core.Services.SceneLoader;
+using MainGame.Balloons;
 using MainGame.GameField;
 using Zenject;
 
@@ -8,9 +9,10 @@ namespace Core
     {
         private readonly BalloonSpawner _balloonSpawner;
         private readonly MainGameField _mainGameField;
+        private readonly SceneLoader _sceneLoader;
 
         [Inject]
-        public MainGameManager(BalloonSpawner balloonSpawner, MainGameField mainGameField)
+        public MainGameManager(BalloonSpawner balloonSpawner, MainGameField mainGameField, SceneLoader sceneLoader)
         {
             _balloonSpawner = balloonSpawner;
             _mainGameField = mainGameField;
@@ -18,7 +20,7 @@ namespace Core
 
         public void Initialize()
         {
-            
+            _balloonSpawner.Init();
             
             StartGameplay();
         }
@@ -26,6 +28,13 @@ namespace Core
         private void StartGameplay()
         {
             _balloonSpawner.StartGameplay();
+        }
+
+        private void DeInit()
+        {
+            _balloonSpawner.DeInit();
+            
+            _sceneLoader.LoadScene(SceneName.MainMenu);
         }
     }
 }
