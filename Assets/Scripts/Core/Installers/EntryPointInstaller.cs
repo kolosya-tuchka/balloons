@@ -1,3 +1,4 @@
+using Core.Factories.GameFactory;
 using Core.Services.SceneLoader;
 using UnityEngine;
 using Zenject;
@@ -21,7 +22,7 @@ namespace Core.Installers
 
         private void BindFactories()
         {
-            
+            Container.BindInterfacesTo<GameFactory>().AsSingle();
         }
 
         private void BindServices()
