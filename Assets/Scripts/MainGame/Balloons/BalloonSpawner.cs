@@ -70,10 +70,9 @@ namespace MainGame.Balloons
 
         private Balloon FactoryMethod()
         {
-            var balloon = _gameFactory.CreateBalloon();
+            var balloon = _gameFactory.CreateBalloon(_mainGameField.BalloonsParent);
             balloon.gameObject.SetActive(false);
             balloon.Init(DespawnBalloon);
-            balloon.transform.parent = _mainGameField.BalloonsParent;
             return balloon;
         }
     }

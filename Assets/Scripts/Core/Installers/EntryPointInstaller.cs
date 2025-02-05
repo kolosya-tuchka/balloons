@@ -1,4 +1,5 @@
 using Core.Factories.GameFactory;
+using Core.Factories.WindowFactory;
 using Core.Services.SaveLoadService;
 using Core.Services.SceneLoader;
 using Core.Services.WindowManager;
@@ -10,6 +11,7 @@ namespace Core.Installers
     public class EntryPointInstaller : MonoInstaller
     {
         [SerializeField] private CoroutineRunner CoroutineRunner;
+        [SerializeField] private Transform WindowsParent;
         
         public override void InstallBindings()
         {
@@ -29,6 +31,7 @@ namespace Core.Installers
         private void BindFactories()
         {
             Container.BindInterfacesTo<GameFactory>().AsSingle();
+            Container.BindInterfacesTo<WindowFactory>().AsSingle().WithArguments(WindowsParent);
         }
 
         private void BindServices()
@@ -36,6 +39,7 @@ namespace Core.Installers
             Container.Bind<SceneLoader>().AsSingle();
             Container.BindInterfacesTo<PlayerPrefsSaveLoadService>().AsSingle();
             Container.BindInterfacesTo<WindowManager>().AsSingle();
+            Container.BindInterfacesTo<Services.ResourceProvider.ResourceProvider>().AsSingle();
         }
     }
 }

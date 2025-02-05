@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Windows;
+using Windows.GameOverWindow;
+using Windows.RecordsWindow;
 using Core.Factories.GameFactory;
+using Core.Factories.WindowFactory;
 using UnityEngine.UI;
 using Zenject;
 
@@ -9,13 +12,13 @@ namespace Core.Services.WindowManager
 {
     public class WindowManager : IWindowManager
     {
-        private readonly IGameFactory _gameFactory;
+        private readonly IWindowFactory _windowFactory;
         private readonly Dictionary<Type, BaseWindow> _windows = new ();
 
         [Inject]
-        public WindowManager(IGameFactory gameFactory)
+        public WindowManager(IWindowFactory windowFactory)
         {
-            _gameFactory = gameFactory;
+            _windowFactory = windowFactory;
         }
 
         public TWindow CreateWindow<TWindow>() where TWindow : BaseWindow =>
@@ -23,7 +26,8 @@ namespace Core.Services.WindowManager
 
         public void LoadWindows()
         {
-            
+            _windows[typeof(GameOverWindow)] = _windowFactory.CreateGameOverWindow();
+            _windows[typeof(RecordsWindow)] = _windowFactory.CreateRecordsWindow();
         }
     }
 }

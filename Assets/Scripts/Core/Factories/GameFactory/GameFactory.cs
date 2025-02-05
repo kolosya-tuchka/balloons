@@ -1,4 +1,5 @@
-﻿using MainGame.Balloons;
+﻿using Core.Services.ResourceProvider;
+using MainGame.Balloons;
 using MainGame.GameField;
 using MainMenu;
 using UnityEngine;
@@ -8,27 +9,21 @@ namespace Core.Factories.GameFactory
 {
     public class GameFactory : IGameFactory
     {
-        private readonly DiContainer _container;
+        private readonly IResourceProvider _resourceProvider;
 
         [Inject]
-        public GameFactory(DiContainer container)
+        public GameFactory(IResourceProvider resourceProvider)
         {
-            _container = container;
+            _resourceProvider = resourceProvider;
         }
 
         public MainMenuUI CreateMainMenuUI() =>
-            LoadAndInstantiate(ResourcePaths.MainMenuUI).GetComponent<MainMenuUI>();
+            _resourceProvider.LoadAndInstantiate(ResourcePaths.MainMenuUI).GetComponent<MainMenuUI>();
 
         public MainGameField CreateMainGameField() =>
-            LoadAndInstantiate(ResourcePaths.MainGameField).GetComponent<MainGameField>();
+            _resourceProvider.LoadAndInstantiate(ResourcePaths.MainGameField).GetComponent<MainGameField>();
 
-        public Balloon CreateBalloon() =>
-            LoadAndInstantiate(ResourcePaths.Balloon).GetComponent<Balloon>();
-
-        private GameObject LoadAndInstantiate(string address)
-        {
-            var prefab = Resources.Load<GameObject>(address);
-            return Object.Instantiate(prefab);
-        }
+        public Balloon CreateBalloon(Transform parent) =>
+            _resourceProvider.LoadAndInstantiate(ResourcePaths.Balloon, parent).GetComponent<Balloon>();
     }
 }

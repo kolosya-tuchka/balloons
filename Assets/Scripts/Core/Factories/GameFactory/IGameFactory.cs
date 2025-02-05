@@ -1,6 +1,7 @@
 ﻿using MainGame.Balloons;
 using MainGame.GameField;
 using MainMenu;
+using UnityEngine;
 
 namespace Core.Factories.GameFactory
 {
@@ -8,6 +9,6 @@ namespace Core.Factories.GameFactory
     {
         MainMenuUI CreateMainMenuUI();
         MainGameField CreateMainGameField();
-        Balloon CreateBalloon();
+        Balloon CreateBalloon(Transform parent);
     }
 }
