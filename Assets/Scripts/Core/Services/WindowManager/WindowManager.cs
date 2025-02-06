@@ -28,6 +28,11 @@ namespace Core.Services.WindowManager
         {
             _windows[typeof(GameOverWindow)] = _windowFactory.CreateGameOverWindow();
             _windows[typeof(RecordsWindow)] = _windowFactory.CreateRecordsWindow();
+
+            foreach (var window in _windows)
+            {
+                window.Value.Hide();
+            }
         }
     }
 }
