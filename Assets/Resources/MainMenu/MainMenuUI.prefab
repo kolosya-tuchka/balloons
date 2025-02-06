@@ -806,6 +806,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Back
       objectReference: {fileID: 0}
+    - target: {fileID: 4602253605463989142, guid: d0f0faaf234ea5345ae23f9d66518f46, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8894643022353745664, guid: d0f0faaf234ea5345ae23f9d66518f46, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -832,11 +836,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8894643022353745664, guid: d0f0faaf234ea5345ae23f9d66518f46, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 657.546
+      value: 0.000030513387
       objectReference: {fileID: 0}
     - target: {fileID: 8894643022353745664, guid: d0f0faaf234ea5345ae23f9d66518f46, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8894643022353745664, guid: d0f0faaf234ea5345ae23f9d66518f46, type: 3}
       propertyPath: m_LocalPosition.x
