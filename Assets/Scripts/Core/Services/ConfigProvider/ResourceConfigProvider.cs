@@ -8,6 +8,7 @@ namespace Core.Services.ConfigProvider
     {
         public BalloonConfig BalloonConfig { get; private set; }
         public RecordsConfig RecordsConfig { get; private set; }
+        public AudioConfig AudioConfig { get; private set; }
 
         [Inject]
         public ResourceConfigProvider()
@@ -19,6 +20,7 @@ namespace Core.Services.ConfigProvider
         {
             BalloonConfig = Resources.Load<BalloonConfig>(ConfigPaths.BalloonsConfigPath);
             RecordsConfig = Resources.Load<RecordsConfig>(ConfigPaths.RecordsConfigPath);
+            AudioConfig = Resources.Load<AudioConfig>(ConfigPaths.AudioConfigPath);
         }
     }
 }

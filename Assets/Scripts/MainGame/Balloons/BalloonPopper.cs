@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Services.AudioService;
 using MainGame.GameLoop;
 using Zenject;
 
@@ -10,16 +11,18 @@ namespace MainGame.Balloons
         
         private readonly BalloonSpawner _balloonSpawner;
         private readonly GameOverController _gameOverController;
+        private readonly IAudioService _audioService;
 
         private bool _gameOver;
 
         public int BalloonCount { get; private set; }
         
         [Inject]
-        public BalloonPopper(BalloonSpawner balloonSpawner, GameOverController gameOverController)
+        public BalloonPopper(BalloonSpawner balloonSpawner, GameOverController gameOverController, IAudioService audioService)
         {
             _balloonSpawner = balloonSpawner;
             _gameOverController = gameOverController;
+            _audioService = audioService;
         }
 
         public void Init()
@@ -47,6 +50,7 @@ namespace MainGame.Balloons
             }
             
             ++BalloonCount;
+            _audioService.PlaySoundByType(SoundType.Pop);
             balloon.Despawn();
             balloon.OnBalloonClick -= PopBalloon;
             OnBalloonPopped?.Invoke();

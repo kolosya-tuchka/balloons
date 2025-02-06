@@ -1,5 +1,6 @@
 using Core.Factories.GameFactory;
 using Core.Factories.WindowFactory;
+using Core.Services.AudioService;
 using Core.Services.ConfigProvider;
 using Core.Services.SaveLoadService;
 using Core.Services.SceneLoader;
@@ -13,6 +14,7 @@ namespace Core.Installers
     {
         [SerializeField] private CoroutineRunner CoroutineRunner;
         [SerializeField] private Transform WindowsParent;
+        [SerializeField] private AudioSource MusicSource, SoundSource;
         
         public override void InstallBindings()
         {
@@ -42,6 +44,7 @@ namespace Core.Installers
             Container.BindInterfacesTo<WindowManager>().AsSingle();
             Container.BindInterfacesTo<Services.ResourceProvider.ResourceProvider>().AsSingle();
             Container.BindInterfacesTo<ResourceConfigProvider>().AsSingle();
+            Container.BindInterfacesTo<AudioService>().AsSingle().WithArguments(MusicSource, SoundSource);
         }
     }
 }

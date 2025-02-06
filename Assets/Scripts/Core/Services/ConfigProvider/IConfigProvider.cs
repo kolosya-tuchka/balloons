@@ -6,5 +6,6 @@ namespace Core.Services.ConfigProvider
     {
         BalloonConfig BalloonConfig { get; }
         RecordsConfig RecordsConfig { get; }
+        AudioConfig AudioConfig { get; }
     }
 }

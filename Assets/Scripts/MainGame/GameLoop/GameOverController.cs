@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.GameOverWindow;
 using Configs;
+using Core.Services.AudioService;
 using Core.Services.ConfigProvider;
 using Core.Services.WindowManager;
 using MainGame.Balloons;
@@ -14,6 +15,7 @@ namespace MainGame.GameLoop
         private readonly BalloonDespawnTrigger _balloonDespawnTrigger;
         private readonly IWindowManager _windowManager;
         private readonly RecordsConfig _recordsConfig;
+        private readonly IAudioService _audioService;
         
         private Action<string> _onRestart, _onMenu;
 
@@ -22,9 +24,11 @@ namespace MainGame.GameLoop
         private bool _gameOver;
         
         [Inject]
-        public GameOverController(MainGameField mainGameField, IWindowManager windowManager, IConfigProvider configProvider)
+        public GameOverController(MainGameField mainGameField, IWindowManager windowManager, IConfigProvider configProvider,
+            IAudioService audioService)
         {
             _windowManager = windowManager;
+            _audioService = audioService;
             _balloonDespawnTrigger = mainGameField.BalloonDespawnTrigger;
             _recordsConfig = configProvider.RecordsConfig;
         }
@@ -49,6 +53,8 @@ namespace MainGame.GameLoop
                 return;
             }
 
+            _audioService.PlaySoundByType(SoundType.Lose);
+            
             var gameOverWindow = _windowManager.CreateWindow<GameOverWindow>();
             gameOverWindow.Init(_onRestart, _onMenu, _recordsConfig);
             gameOverWindow.Show();
