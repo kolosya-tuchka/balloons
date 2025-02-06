@@ -19,11 +19,12 @@ namespace Core
         private readonly SceneLoader _sceneLoader;
         private readonly MainGameUI _mainGameUI;
         private readonly ScoreDisplay _scoreDisplay;
+        private readonly BalloonSkinController _balloonSkinController;
 
         [Inject]
         public MainGameManager(BalloonSpawner balloonSpawner, MainGameField mainGameField, SceneLoader sceneLoader,
             BalloonMover balloonMover, BalloonPopper balloonPopper, GameOverController gameOverController,
-            ISaveLoadService saveLoadService, ScoreDisplay scoreDisplay)
+            ISaveLoadService saveLoadService, ScoreDisplay scoreDisplay, BalloonSkinController balloonSkinController)
         {
             _balloonSpawner = balloonSpawner;
             _mainGameField = mainGameField;
@@ -32,6 +33,7 @@ namespace Core
             _gameOverController = gameOverController;
             _saveLoadService = saveLoadService;
             _scoreDisplay = scoreDisplay;
+            _balloonSkinController = balloonSkinController;
             _sceneLoader = sceneLoader;
         }
 
@@ -41,6 +43,7 @@ namespace Core
             _balloonPopper.Init();
             _gameOverController.Init(RestartGame, GoToMainMenu);
             _scoreDisplay.Init();
+            _balloonSkinController.Init();
             
             StartGameplay();
         }
@@ -57,6 +60,7 @@ namespace Core
             _gameOverController.DeInit();
             _balloonSpawner.DeInit();
             _scoreDisplay.DeInit();
+            _balloonSkinController.DeInit();
         }
 
         private void Save(string name)

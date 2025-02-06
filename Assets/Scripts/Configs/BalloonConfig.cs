@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Configs
 {
@@ -10,5 +11,7 @@ namespace Configs
         public float ShakeDuration = 0.5f;
 
         public float BalloonSpawnTime = 1f;
+
+        public List<Sprite> BalloonSkins;
     }
 }

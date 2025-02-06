@@ -16,3 +16,8 @@ MonoBehaviour:
   ShakeStrength: 0.2
   ShakeDuration: 0.5
   BalloonSpawnTime: 1
+  BalloonSkins:
+  - {fileID: 21300000, guid: 633e64d21d48c304e9fd8320b3cfa950, type: 3}
+  - {fileID: 21300000, guid: 7e9238248c22f8d4584fef3c1609bd94, type: 3}
+  - {fileID: 21300000, guid: ef67e0f5a63684349aee2d255364d8a4, type: 3}
+  - {fileID: 21300000, guid: 81f563793b9359f4295f441980b45c6a, type: 3}

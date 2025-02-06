@@ -18,6 +18,7 @@ namespace Core.Installers
             Container.Bind<BalloonMover>().AsSingle();
             Container.Bind<BalloonPopper>().AsSingle();
             Container.Bind<GameOverController>().AsSingle();
+            Container.Bind<BalloonSkinController>().AsSingle();
 
             var mainGameUI = gameFactory.CreateMainGameUI();
             Container.Bind<MainGameUI>().FromInstance(mainGameUI).AsSingle();
