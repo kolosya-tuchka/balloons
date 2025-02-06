@@ -1,4 +1,5 @@
 ﻿using Windows.RecordsWindow;
+using Core.Services.AudioService;
 using Core.Services.SaveLoadService;
 using Core.Services.SceneLoader;
 using Core.Services.WindowManager;
@@ -13,33 +14,35 @@ namespace Core
         private readonly MainMenuUI _mainMenuUI;
         private readonly IWindowManager _windowManager;
         private readonly ISaveLoadService _saveLoadService;
+        private readonly IAudioService _audioService;
         
         [Inject]
         public MainMenuManager(SceneLoader sceneLoader, MainMenuUI mainMenuUI, IWindowManager windowManager,
-            ISaveLoadService saveLoadService)
+            ISaveLoadService saveLoadService, IAudioService audioService)
         {
             _sceneLoader = sceneLoader;
             _mainMenuUI = mainMenuUI;
             _windowManager = windowManager;
             _saveLoadService = saveLoadService;
+            _audioService = audioService;
         }
 
         public void Initialize()
         {
-            _mainMenuUI.PlayButton.onClick.AddListener(OnPlayButtonClick);
-            _mainMenuUI.RecordsButton.onClick.AddListener(OnRecordsButtonClick);
+            _mainMenuUI.PlayButton.Init(_audioService, OnPlayButtonClick);
+            _mainMenuUI.RecordsButton.Init(_audioService, OnRecordsButtonClick);
         }
 
         private void DeInit()
         {
-            _mainMenuUI.PlayButton.onClick.RemoveListener(OnPlayButtonClick);
-            _mainMenuUI.RecordsButton.onClick.RemoveListener(OnRecordsButtonClick);
+            _mainMenuUI.PlayButton.DeInit();
+            _mainMenuUI.RecordsButton.DeInit();
         }
 
         private void OnRecordsButtonClick()
         {
             var recordsWindow = _windowManager.CreateWindow<RecordsWindow>();
-            recordsWindow.Init(_saveLoadService.GetRecords());
+            recordsWindow.Init(_saveLoadService.GetRecords(), _audioService);
             recordsWindow.Show();
         }
 

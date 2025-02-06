@@ -56,7 +56,7 @@ namespace MainGame.GameLoop
             _audioService.PlaySoundByType(SoundType.Lose);
             
             var gameOverWindow = _windowManager.CreateWindow<GameOverWindow>();
-            gameOverWindow.Init(_onRestart, _onMenu, _recordsConfig);
+            gameOverWindow.Init(_onRestart, _onMenu, _recordsConfig, _audioService);
             gameOverWindow.Show();
             
             _gameOver = true;

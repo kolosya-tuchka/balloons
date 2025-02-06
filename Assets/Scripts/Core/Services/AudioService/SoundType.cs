@@ -2,6 +2,6 @@
 {
     public enum SoundType
     {
-        Pop, Lose
+        Pop, Lose, Click
     }
 }

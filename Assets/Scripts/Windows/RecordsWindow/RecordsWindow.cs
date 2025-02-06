@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Core.Services.AudioService;
 using Core.Services.SaveLoadService;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +10,14 @@ namespace Windows.RecordsWindow
     public class RecordsWindow : BaseWindow
     {
         [SerializeField] private List<RecordView> RecordViews;
-        [SerializeField] private Button CloseButton;
+        [SerializeField] private ButtonWithClickSound CloseButton;
 
-        public void Init(IReadOnlyList<RecordSaveData> records)
+        private IAudioService _audioService;
+        
+        public void Init(IReadOnlyList<RecordSaveData> records, IAudioService audioService)
         {
+            _audioService = audioService;
+            
             for (int i = 0; i < records.Count; ++i)
             {
                 var record = records[i];
@@ -27,14 +33,14 @@ namespace Windows.RecordsWindow
         
         public override void Show()
         {
-            CloseButton.onClick.AddListener(Hide);
+            CloseButton.Init(_audioService, Hide);
             
             base.Show();
         }
 
         public override void Hide()
         {
-            CloseButton.onClick.RemoveListener(Hide);
+            CloseButton.DeInit();
 
             base.Hide();
         }

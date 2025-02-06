@@ -53,8 +53,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NameInputField: {fileID: 2269443334878155155}
-  RestartButton: {fileID: 4928537952216699626}
-  MenuButton: {fileID: 1855530946216183773}
+  RestartButton: {fileID: 695837481130536949}
+  MenuButton: {fileID: 1660445935366771226}
 --- !u!1 &2089915285920735751
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +275,7 @@ GameObject:
   - component: {fileID: 8238769286694181518}
   - component: {fileID: 7037821502343149151}
   - component: {fileID: 4928537952216699626}
+  - component: {fileID: 695837481130536949}
   m_Layer: 0
   m_Name: RestartButton
   m_TagString: Untagged
@@ -384,6 +385,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &695837481130536949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4702471332108805860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9af9104cd32c4364a895c06f35f94b02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundType: 2
+  Button: {fileID: 4928537952216699626}
 --- !u!1 &4779343409892906556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1182,6 +1197,7 @@ GameObject:
   - component: {fileID: 2586114099162504300}
   - component: {fileID: 2320126730160062447}
   - component: {fileID: 1855530946216183773}
+  - component: {fileID: 1660445935366771226}
   m_Layer: 0
   m_Name: MenuButton
   m_TagString: Untagged
@@ -1291,6 +1307,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1660445935366771226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8499062992242753567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9af9104cd32c4364a895c06f35f94b02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundType: 2
+  Button: {fileID: 1855530946216183773}
 --- !u!1 &9061940938276814635
 GameObject:
   m_ObjectHideFlags: 0

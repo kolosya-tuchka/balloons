@@ -118,8 +118,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a9d220a05a141f9915324edb692c3f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PlayButton>k__BackingField: {fileID: 6308822379261393348}
-  <RecordsButton>k__BackingField: {fileID: 646574026661536395}
+  <PlayButton>k__BackingField: {fileID: 2548540495294535904}
+  <RecordsButton>k__BackingField: {fileID: 604782981493251607}
 --- !u!1 &4296418365386301304
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 8732115799628209676}
   - component: {fileID: 8951865713680930035}
   - component: {fileID: 646574026661536395}
+  - component: {fileID: 604782981493251607}
   m_Layer: 5
   m_Name: RecordsButton
   m_TagString: Untagged
@@ -241,6 +242,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &604782981493251607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4296418365386301304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9af9104cd32c4364a895c06f35f94b02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundType: 2
+  Button: {fileID: 646574026661536395}
 --- !u!1 &4991003274401468235
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,6 +268,7 @@ GameObject:
   - component: {fileID: 3430478472897555409}
   - component: {fileID: 2050363795127832981}
   - component: {fileID: 6308822379261393348}
+  - component: {fileID: 2548540495294535904}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -362,6 +378,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2548540495294535904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4991003274401468235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9af9104cd32c4364a895c06f35f94b02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundType: 2
+  Button: {fileID: 6308822379261393348}
 --- !u!1 &6334000553649879377
 GameObject:
   m_ObjectHideFlags: 0
