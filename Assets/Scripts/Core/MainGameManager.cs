@@ -3,6 +3,7 @@ using Core.Services.SceneLoader;
 using MainGame.Balloons;
 using MainGame.GameField;
 using MainGame.GameLoop;
+using MainGame.UI;
 using Zenject;
 
 namespace Core
@@ -16,11 +17,13 @@ namespace Core
         private readonly GameOverController _gameOverController;
         private readonly ISaveLoadService _saveLoadService;
         private readonly SceneLoader _sceneLoader;
+        private readonly MainGameUI _mainGameUI;
+        private readonly ScoreDisplay _scoreDisplay;
 
         [Inject]
         public MainGameManager(BalloonSpawner balloonSpawner, MainGameField mainGameField, SceneLoader sceneLoader,
             BalloonMover balloonMover, BalloonPopper balloonPopper, GameOverController gameOverController,
-            ISaveLoadService saveLoadService)
+            ISaveLoadService saveLoadService, ScoreDisplay scoreDisplay)
         {
             _balloonSpawner = balloonSpawner;
             _mainGameField = mainGameField;
@@ -28,6 +31,7 @@ namespace Core
             _balloonPopper = balloonPopper;
             _gameOverController = gameOverController;
             _saveLoadService = saveLoadService;
+            _scoreDisplay = scoreDisplay;
             _sceneLoader = sceneLoader;
         }
 
@@ -36,6 +40,7 @@ namespace Core
             _balloonMover.Init();
             _balloonPopper.Init();
             _gameOverController.Init(RestartGame, GoToMainMenu);
+            _scoreDisplay.Init();
             
             StartGameplay();
         }
@@ -51,6 +56,7 @@ namespace Core
             _balloonPopper.DeInit();
             _gameOverController.DeInit();
             _balloonSpawner.DeInit();
+            _scoreDisplay.DeInit();
         }
 
         private void Save(string name)
