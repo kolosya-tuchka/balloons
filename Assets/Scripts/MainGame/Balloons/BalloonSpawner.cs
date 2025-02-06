@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
+using Configs;
 using Core;
 using Core.Factories.GameFactory;
+using Core.Services.ConfigProvider;
 using MainGame.GameField;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -18,16 +20,19 @@ namespace MainGame.Balloons
         private readonly SpawnRange _spawnRange;
         private readonly IGameFactory _gameFactory;
         private readonly MainGameField _mainGameField;
+        private readonly BalloonConfig _balloonConfig;
 
         private bool _spawn;
         
         [Inject]
-        public BalloonSpawner(ICoroutineRunner coroutineRunner, IGameFactory gameFactory, MainGameField mainGameField)
+        public BalloonSpawner(ICoroutineRunner coroutineRunner, IGameFactory gameFactory, MainGameField mainGameField,
+            IConfigProvider configProvider)
         {
             _coroutineRunner = coroutineRunner;
             _spawnRange = mainGameField.SpawnRange;
             _mainGameField = mainGameField;
             _gameFactory = gameFactory;
+            _balloonConfig = configProvider.BalloonConfig;
             _balloonPool = new ObjectPool<Balloon>(FactoryMethod);
         }
 
@@ -47,7 +52,7 @@ namespace MainGame.Balloons
             while (_spawn)
             {
                 SpawnBalloon();
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(_balloonConfig.BalloonSpawnTime);
             }
         }
 

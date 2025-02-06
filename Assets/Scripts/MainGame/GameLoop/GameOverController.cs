@@ -1,5 +1,7 @@
 ﻿using System;
 using Windows.GameOverWindow;
+using Configs;
+using Core.Services.ConfigProvider;
 using Core.Services.WindowManager;
 using MainGame.Balloons;
 using MainGame.GameField;
@@ -11,6 +13,7 @@ namespace MainGame.GameLoop
     {
         private readonly BalloonDespawnTrigger _balloonDespawnTrigger;
         private readonly IWindowManager _windowManager;
+        private readonly RecordsConfig _recordsConfig;
         
         private Action<string> _onRestart, _onMenu;
 
@@ -19,10 +22,11 @@ namespace MainGame.GameLoop
         private bool _gameOver;
         
         [Inject]
-        public GameOverController(MainGameField mainGameField, IWindowManager windowManager)
+        public GameOverController(MainGameField mainGameField, IWindowManager windowManager, IConfigProvider configProvider)
         {
             _windowManager = windowManager;
             _balloonDespawnTrigger = mainGameField.BalloonDespawnTrigger;
+            _recordsConfig = configProvider.RecordsConfig;
         }
 
         public void Init(Action<string> onRestart, Action<string> onMenu)
@@ -46,7 +50,7 @@ namespace MainGame.GameLoop
             }
 
             var gameOverWindow = _windowManager.CreateWindow<GameOverWindow>();
-            gameOverWindow.Init(_onRestart, _onMenu);
+            gameOverWindow.Init(_onRestart, _onMenu, _recordsConfig);
             gameOverWindow.Show();
             
             _gameOver = true;

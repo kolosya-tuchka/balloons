@@ -6,7 +6,5 @@ namespace Core.Services.ConfigProvider
     {
         BalloonConfig BalloonConfig { get; }
         RecordsConfig RecordsConfig { get; }
-
-        void LoadConfigs();
     }
 }

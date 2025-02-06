@@ -213,6 +213,7 @@ MonoBehaviour:
   <BalloonDespawnTrigger>k__BackingField: {fileID: 1945438686942278587}
   <SpawnRange>k__BackingField: {fileID: 2281649901282384531}
   <BalloonsParent>k__BackingField: {fileID: 1527132429049778996}
+  <FieldHeight>k__BackingField: 20
 --- !u!1 &9033804419246148835
 GameObject:
   m_ObjectHideFlags: 0

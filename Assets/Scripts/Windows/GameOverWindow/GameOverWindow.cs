@@ -1,4 +1,5 @@
 ﻿using System;
+using Configs;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,11 +12,15 @@ namespace Windows.GameOverWindow
         [SerializeField] private Button RestartButton, MenuButton;
 
         private Action<string> _onRestart, _onMenu;
+        private int _minNameLength, _maxNameLength;
         
-        public void Init(Action<string> onRestart, Action<string> onMenu)
+        public void Init(Action<string> onRestart, Action<string> onMenu, RecordsConfig recordsConfig)
         {
             _onRestart = onRestart;
             _onMenu = onMenu;
+
+            _minNameLength = recordsConfig.MinNameLength;
+            _maxNameLength = recordsConfig.MaxNameLength;
         }
 
         public override void Show()
@@ -40,7 +45,7 @@ namespace Windows.GameOverWindow
 
         private void OnNameInputValueChanged(string text)
         {
-            bool active = text.Length is >= 4 and <= 10;
+            bool active = text.Length >= _minNameLength && text.Length <= _maxNameLength;
 
             RestartButton.interactable = active;
             MenuButton.interactable = active;

@@ -11,23 +11,19 @@ namespace Core
         private readonly SceneLoader _sceneLoader;
         private readonly ISaveLoadService _saveLoadService;
         private readonly IWindowManager _windowManager;
-        private readonly IConfigProvider _configProvider;
         
         [Inject]
-        public GameStarter(SceneLoader sceneLoader, ISaveLoadService saveLoadService, IWindowManager windowManager,
-            IConfigProvider configProvider)
+        public GameStarter(SceneLoader sceneLoader, ISaveLoadService saveLoadService, IWindowManager windowManager)
         {
             _sceneLoader = sceneLoader;
             _saveLoadService = saveLoadService;
             _windowManager = windowManager;
-            _configProvider = configProvider;
         }
 
         public void Initialize()
         {
             _saveLoadService.Load();
             _windowManager.LoadWindows();
-            _configProvider.LoadConfigs();
             
             _sceneLoader.LoadScene(SceneName.MainMenu);
         }

@@ -1,5 +1,6 @@
 using Configs;
 using UnityEngine;
+using Zenject;
 
 namespace Core.Services.ConfigProvider
 {
@@ -7,11 +8,17 @@ namespace Core.Services.ConfigProvider
     {
         public BalloonConfig BalloonConfig { get; private set; }
         public RecordsConfig RecordsConfig { get; private set; }
+
+        [Inject]
+        public ResourceConfigProvider()
+        {
+            LoadConfigs();
+        }
         
         public void LoadConfigs()
         {
-            BalloonConfig = Resources.Load<BalloonConfig>(ConfigPaths.BalloonsConfig);
-            RecordsConfig = Resources.Load<RecordsConfig>(ConfigPaths.RecordsConfig);
+            BalloonConfig = Resources.Load<BalloonConfig>(ConfigPaths.BalloonsConfigPath);
+            RecordsConfig = Resources.Load<RecordsConfig>(ConfigPaths.RecordsConfigPath);
         }
     }
 }
