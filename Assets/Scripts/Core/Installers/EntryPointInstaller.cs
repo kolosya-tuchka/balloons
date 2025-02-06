@@ -1,5 +1,6 @@
 using Core.Factories.GameFactory;
 using Core.Factories.WindowFactory;
+using Core.Services.ConfigProvider;
 using Core.Services.SaveLoadService;
 using Core.Services.SceneLoader;
 using Core.Services.WindowManager;
@@ -40,6 +41,7 @@ namespace Core.Installers
             Container.BindInterfacesTo<PlayerPrefsSaveLoadService>().AsSingle();
             Container.BindInterfacesTo<WindowManager>().AsSingle();
             Container.BindInterfacesTo<Services.ResourceProvider.ResourceProvider>().AsSingle();
+            Container.BindInterfacesTo<ResourceConfigProvider>().AsSingle();
         }
     }
 }
