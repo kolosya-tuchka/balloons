@@ -35,9 +35,7 @@ namespace Core
         {
             _balloonMover.Init();
             _balloonPopper.Init();
-            _gameOverController.Init();
-
-            _gameOverController.OnGameOver += GoToMainMenu;
+            _gameOverController.Init(RestartGame, GoToMainMenu);
             
             StartGameplay();
         }
@@ -55,11 +53,24 @@ namespace Core
             _balloonSpawner.DeInit();
         }
 
-        private void GoToMainMenu()
+        private void Save(string name)
+        {
+            _saveLoadService.Save(new(name, _balloonPopper.BalloonCount));
+        }
+
+        private void RestartGame(string name)
         {
             DeInit();
+            Save(name);
             
-            _saveLoadService.Save(new("Aboba", _balloonPopper.BalloonCount));
+            _sceneLoader.LoadScene(SceneName.MainGame);
+        }
+
+        private void GoToMainMenu(string name)
+        {
+            DeInit();
+            Save(name);
+            
             _sceneLoader.LoadScene(SceneName.MainMenu);
         }
     }

@@ -31,7 +31,7 @@ namespace Core.Services.WindowManager
 
             foreach (var window in _windows)
             {
-                window.Value.Hide();
+                window.Value.gameObject.SetActive(false);
             }
         }
     }
