@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 3940481201288972233}
   - component: {fileID: 4987336954367622655}
   - component: {fileID: 3696171428769099022}
+  - component: {fileID: 3522559053057474417}
   m_Layer: 0
   m_Name: RecordView
   m_TagString: Untagged
@@ -346,6 +347,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.1
+--- !u!114 &3522559053057474417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3378467476765484982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 208483f2729142c49d2efbd490dc2f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NameText: {fileID: 5789715060793485734}
+  ScoreText: {fileID: 1264462847318551388}
 --- !u!1 &5291015269093826882
 GameObject:
   m_ObjectHideFlags: 0
